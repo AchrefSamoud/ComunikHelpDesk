@@ -10,14 +10,14 @@ const Stack = createNativeStackNavigator();
 export default function AppNav() {
   const  {isLoading, userToken} = useContext(AuthContext)
   if(isLoading){
+    return(
    <View style={{flex:1,justifyContent:'center',alignContent:'center'}}>
     <ActivityIndicator size={'large'}/>
-   </View>   
+   </View> );  
   }
   return (
-   
     <NavigationContainer>
-      <AuthStack/>    
-  </NavigationContainer>
-  )
+    {userToken !== null? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
 }

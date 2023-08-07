@@ -1,7 +1,9 @@
-import { View, Text, SafeAreaView , ScrollView,TextInput, ImageBackground} from 'react-native'
-import React from 'react'
+import { View, Text, SafeAreaView , ScrollView,TextInput, ImageBackground, Button} from 'react-native'
+import {React,useContext} from 'react'
 import Feather from 'react-native-vector-icons/Feather'
+import { AuthContext } from '../context/AuthContext'
 export default function HomeScreen() {
+  const {logout}= useContext(AuthContext);
   return (
     <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}>
       <ScrollView style={{padding:20}}>
@@ -31,6 +33,7 @@ export default function HomeScreen() {
           <TextInput placeholder='search'>
 
           </TextInput>
+          <Button title='logout' onPress={()=> {logout()}}></Button>
         </View>
       </ScrollView>
     </SafeAreaView>

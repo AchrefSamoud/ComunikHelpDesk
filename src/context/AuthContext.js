@@ -34,11 +34,12 @@ export const AuthProvider = ({children}) => {
       setUserToken(null);
       AsyncStorage.removeItem('userToken');
       AsyncStorage.removeItem('userInfo');
-      setIsLoading(true);
+      setIsLoading(false);
     }
 
     const isLoggedIn = async () => {
      try{
+      setIsLoading(true);
        let userToken = await AsyncStorage.getItem('userToken');
        let userInfo = await AsyncStorage.getItem('userInfo');
        userInfo=JSON.parse(userInfo);
@@ -58,7 +59,7 @@ export const AuthProvider = ({children}) => {
       isLoggedIn();
     },[])
   return (
-    <AuthContext.Provider value={{login, logout}}>
+    <AuthContext.Provider value={{login, logout,isLoading,userToken}}>
         {children}
     </AuthContext.Provider>
     );
